@@ -1,3 +1,4 @@
+use std::env;
 use std::fs::File;
 use std::io::prelude::*;
 use std::io::BufReader;
@@ -15,7 +16,9 @@ fn get_total_fuel_by_mass(mass: i32) -> i32 {
 }
 
 fn main() -> std::io::Result<()> {
-    let file = File::open("input/day01.txt")?;
+    let args: Vec<String> = env::args().collect();
+    let file_name = &args[1];
+    let file = File::open(file_name)?;
     let mut buf_reader = BufReader::new(file);
     let mut contents = String::new();
     buf_reader.read_to_string(&mut contents)?;
@@ -40,8 +43,8 @@ mod tests {
     }
     #[test]
     fn test_examples_part2() {
-        assert_eq!(get_fuel_by_mass(12), 2);
-        assert_eq!(get_fuel_by_mass(14), 2);
+        assert_eq!(get_total_fuel_by_mass(12), 2);
+        assert_eq!(get_total_fuel_by_mass(14), 2);
         assert_eq!(get_total_fuel_by_mass(100756), 50346);
         assert_eq!(get_total_fuel_by_mass(1969), 966);
     }
