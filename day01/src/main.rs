@@ -32,35 +32,17 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_1() {
+    fn test_examples_part1() {
         assert_eq!(get_fuel_by_mass(12), 2);
-    }
-    #[test]
-    fn test_2() {
         assert_eq!(get_fuel_by_mass(14), 2);
-    }
-    #[test]
-    fn test_3() {
         assert_eq!(get_fuel_by_mass(1969), 654);
-    }
-    #[test]
-    fn test_4() {
         assert_eq!(get_fuel_by_mass(100756), 33583);
     }
     #[test]
-    fn test_5() {
-        assert_eq!(get_total_fuel_by_mass(12), 2);
-    }
-    #[test]
-    fn test_6() {
-        assert_eq!(get_total_fuel_by_mass(14), 2);
-    }
-    #[test]
-    fn test_7() {
-        assert_eq!(get_total_fuel_by_mass(1969), 966);
-    }
-    #[test]
-    fn test_8() {
+    fn test_examples_part2() {
+        assert_eq!(get_fuel_by_mass(12), 2);
+        assert_eq!(get_fuel_by_mass(14), 2);
         assert_eq!(get_total_fuel_by_mass(100756), 50346);
+        assert_eq!(get_total_fuel_by_mass(1969), 966);
     }
 }
