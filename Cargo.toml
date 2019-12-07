@@ -1,5 +1,9 @@
-[workspace]
-members = [
-    "day01",
-    "day02",
-]
+[package]
+name = "advent-of-code-2019"
+version = "0.1.0"
+authors = ["James Hollister <jhollisterjr@gmail.com>"]
+
+[dependencies]
+aoc-runner = "*"
+aoc-runner-derive = "*"
+pathfinding = "2.0"

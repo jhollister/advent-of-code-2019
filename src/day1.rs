@@ -1,12 +1,6 @@
-use std::env;
-use std::fs::File;
-use std::io::prelude::*;
-use std::io::BufReader;
-
 fn get_fuel_by_mass(mass: i32) -> i32 {
     (mass / 3) - 2
 }
-
 fn get_total_fuel_by_mass(mass: i32) -> i32 {
     let fuel = get_fuel_by_mass(mass);
     if fuel <= 0 {
@@ -15,24 +9,25 @@ fn get_total_fuel_by_mass(mass: i32) -> i32 {
     fuel + get_total_fuel_by_mass(fuel)
 }
 
-fn main() -> std::io::Result<()> {
-    let args: Vec<String> = env::args().collect();
-    let file_name = &args[1];
-    let file = File::open(file_name)?;
-    let mut buf_reader = BufReader::new(file);
-    let mut contents = String::new();
-    buf_reader.read_to_string(&mut contents)?;
-    let sum: i32 = contents
-        .split_whitespace()
-        .map(|x| get_total_fuel_by_mass(x.parse::<i32>().unwrap()))
-        .sum();
-    println!("Total fuel: {}", sum);
-    Ok(())
+/// Parses each line to be an i32
+#[aoc_generator(day1)]
+fn generator_input(input: &str) -> Vec<i32> {
+    input.lines().map(|a| a.parse::<i32>().unwrap()).collect()
+}
+
+#[aoc(day1, part1)]
+fn solve_part1(input: &[i32]) -> i32 {
+    input.iter().map(|x| get_total_fuel_by_mass(*x)).sum()
+}
+
+#[aoc(day1, part2)]
+fn solve_part2(input: &[i32]) -> i32 {
+    input.iter().map(|x| get_fuel_by_mass(*x)).sum()
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use super::{get_fuel_by_mass, get_total_fuel_by_mass};
 
     #[test]
     fn test_examples_part1() {
